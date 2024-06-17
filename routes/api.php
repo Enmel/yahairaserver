@@ -10,6 +10,36 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/tokens/create', App\Http\Controllers\AuthController::class);
 
+Route::prefix('product_types')->group(function () {
+
+    Route::get('/', App\Http\Controllers\ProductTypes\ListController::class);
+    Route::post('/', App\Http\Controllers\ProductTypes\StoreController::class);
+    Route::get('/{product_type}', App\Http\Controllers\ProductTypes\GetByIdController::class);
+    Route::put('/{product_type}', App\Http\Controllers\ProductTypes\UpdateController::class);
+    Route::delete('/{product_type}', App\Http\Controllers\ProductTypes\DeleteController::class);
+
+})->middleware('auth:sanctum');
+
+Route::prefix('stores')->group(function () {
+
+    Route::get('/', App\Http\Controllers\Stores\ListController::class);
+    Route::post('/', App\Http\Controllers\Stores\StoreController::class);
+    Route::get('/{store}', App\Http\Controllers\Stores\GetByIdController::class);
+    Route::put('/{store}', App\Http\Controllers\Stores\UpdateController::class);
+    Route::delete('/{store}', App\Http\Controllers\Stores\DeleteController::class);
+
+})->middleware('auth:sanctum');
+
+Route::prefix('brands')->group(function () {
+
+    Route::get('/', App\Http\Controllers\Brands\ListController::class);
+    Route::post('/', App\Http\Controllers\Brands\StoreController::class);
+    Route::get('/{brand}', App\Http\Controllers\Brands\GetByIdController::class);
+    Route::put('/{brand}', App\Http\Controllers\Brands\UpdateController::class);
+    Route::delete('/{brand}', App\Http\Controllers\Brands\DeleteController::class);
+
+})->middleware('auth:sanctum');
+
 Route::prefix('products')->group(function () {
 
     Route::get('/', App\Http\Controllers\Products\ListController::class);
