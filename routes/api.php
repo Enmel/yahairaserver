@@ -4,9 +4,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('users')->group(function () {
+
+    Route::get('/', App\Http\Controllers\Users\ListController::class);
+    Route::post('/', App\Http\Controllers\Users\StoreController::class);
+    Route::get('/{user}', App\Http\Controllers\Users\GetByIdController::class);
+    Route::patch('/{user}', App\Http\Controllers\Users\UpdateController::class);
+    Route::delete('/{user}', App\Http\Controllers\Users\DeleteController::class);
+
 })->middleware('auth:sanctum');
+
 
 Route::post('/tokens/create', App\Http\Controllers\AuthController::class);
 
