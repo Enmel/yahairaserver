@@ -15,7 +15,7 @@ class ListController extends Controller
      */
     public function __invoke(Request $request) : JsonResponse
     {
-        $product_types = ProductType::paginate(15);
+        $product_types = ProductType::all();
 
         return response()->json($product_types, Response::HTTP_OK);
     }

@@ -25,6 +25,12 @@ Route::prefix('product_types')->group(function () {
     Route::put('/{product_type}', App\Http\Controllers\ProductTypes\UpdateController::class);
     Route::delete('/{product_type}', App\Http\Controllers\ProductTypes\DeleteController::class);
 
+    Route::get('/{product_type}/attributes', App\Http\Controllers\Attributes\ListController::class);
+    Route::post('/{product_type}/attributes', App\Http\Controllers\Attributes\StoreController::class);
+    Route::get('/{product_type}/attributes/{attribute}', App\Http\Controllers\Attributes\GetByIdController::class);
+    Route::patch('/{product_type}/attributes/{attribute}', App\Http\Controllers\Attributes\UpdateController::class);
+    Route::delete('/{product_type}/attributes/{attribute}', App\Http\Controllers\Attributes\DeleteController::class);
+
 })->middleware('auth:sanctum');
 
 Route::prefix('stores')->group(function () {
@@ -47,15 +53,6 @@ Route::prefix('brands')->group(function () {
 
 })->middleware('auth:sanctum');
 
-Route::prefix('attribute')->group(function () {
-
-    Route::get('/', App\Http\Controllers\Brands\ListController::class);
-    Route::post('/', App\Http\Controllers\Brands\StoreController::class);
-    Route::get('/{brand}', App\Http\Controllers\Brands\GetByIdController::class);
-    Route::put('/{brand}', App\Http\Controllers\Brands\UpdateController::class);
-    Route::delete('/{brand}', App\Http\Controllers\Brands\DeleteController::class);
-
-})->middleware('auth:sanctum');
 
 Route::prefix('products')->group(function () {
 
