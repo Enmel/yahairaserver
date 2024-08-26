@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('sku_stores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->timestamps();
+            $table->foreignId('sku_id')->constrained();
+            $table->foreignId('store_id')->constrained();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('sku_stores');
     }
 };

@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('skus', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->foreignId('product_id')->constrained();
             $table->string('sku');
             $table->float('price');
-            $table->integer('amount');
             $table->timestamps();
             $table->softDeletes();
         });

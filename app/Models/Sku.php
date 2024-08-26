@@ -18,8 +18,7 @@ class Sku extends Model
     protected $fillable = [
         'product_id',
         'sku',
-        'price',
-        'amount'
+        'price'
     ];
 
     protected function price(): Attribute {
