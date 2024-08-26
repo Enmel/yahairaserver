@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('sku_id')->constrained();
             $table->foreignId('store_id')->constrained();
+            $table->integer('amount');
         });
     }
 

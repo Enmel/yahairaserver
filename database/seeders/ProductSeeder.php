@@ -6,7 +6,7 @@ use App\Models\AttributeOptionSku;
 use App\Models\Sku;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use App\Models\Attribute;
+use App\Models\SkuStores;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductType;
@@ -44,6 +44,11 @@ class ProductSeeder extends Seeder
                     'product_id' => $product->id,
                     'sku' => fake()->isbn13(),
                     'price' => fake()->randomFloat(2, 70, 150),
+                ]);
+
+                SkuStores::create([
+                    'sku_id' => $sku->id,
+                    'store_id' => 1,
                     'amount' => fake()->numberBetween(10, 100),
                 ]);
 
@@ -51,7 +56,10 @@ class ProductSeeder extends Seeder
                     [
                         'sku_id' => $sku->id,
                         'attribute_option_id' => fake()->numberBetween(1, 7),
-                    ],
+                    ]
+                );
+
+                AttributeOptionSku::create(
                     [
                         'sku_id' => $sku->id,
                         'attribute_option_id' => fake()->numberBetween(8, 22),

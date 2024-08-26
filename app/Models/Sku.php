@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sku extends Model
@@ -34,5 +35,9 @@ class Sku extends Model
 
     public function attributeOptions(): BelongsToMany {
         return $this->belongsToMany(AttributeOption::class, 'attribute_option_skus');
+    }
+
+    public function availableInStores(): HasMany {
+        return $this->hasMany(SkuStores::class, 'sku_id');
     }
 }

@@ -15,7 +15,7 @@ class ListController extends Controller
      */
     public function __invoke(Request $request) : JsonResponse
     {
-        $products = Product::with('skus.attributeOptions')->paginate(15);
+        $products = Product::with(['skus.attributeOptions', 'skus.availableInStores.storeData'])->paginate(15);
 
         return response()->json($products, Response::HTTP_OK);
     }
