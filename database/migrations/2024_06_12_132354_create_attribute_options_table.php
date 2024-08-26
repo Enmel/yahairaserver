@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('attribute_id')->constrained();
             $table->string('value');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

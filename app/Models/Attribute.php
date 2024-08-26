@@ -14,6 +14,7 @@ class Attribute extends Model
      */
     protected $fillable = [
         'name',
+        'product_type_id'
     ];
 
     public function attributeOptions(): HasMany {

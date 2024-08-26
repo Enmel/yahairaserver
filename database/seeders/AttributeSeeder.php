@@ -28,7 +28,7 @@ class AttributeSeeder extends Seeder
 
         foreach ($attributes as $attribute) {
 
-            $createdAttribute = Attribute::create(['name' => $attribute['name']]);
+            $createdAttribute = Attribute::create(['name' => $attribute['name'], 'product_type_id' => 1]);
             foreach ($attribute['values'] as $value) {
                 $createdAttribute->attributeOptions()->create(['value' => $value]);
             }
