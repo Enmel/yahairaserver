@@ -16,6 +16,7 @@ class GetByIdController extends Controller
      */
     public function __invoke(Request $request, ProductType $product_type, Attribute $attribute) : JsonResponse
     {
-        return response()->json($attribute, Response::HTTP_OK);
+        $attributes = Attribute::where(['id' => $attribute->id])->with('attributeOptions')->get();
+        return response()->json($attributes, Response::HTTP_OK);
     }
 }

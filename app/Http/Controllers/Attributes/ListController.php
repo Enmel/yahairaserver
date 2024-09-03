@@ -16,7 +16,7 @@ class ListController extends Controller
      */
     public function __invoke(Request $request, ProductType $productType) : JsonResponse
     {
-        $attributes = Attribute::where(['product_type_id' => $productType->id])->get();
+        $attributes = Attribute::where(['product_type_id' => $productType->id])->with('attributeOptions')->get();
 
         return response()->json($attributes, Response::HTTP_OK);
     }
