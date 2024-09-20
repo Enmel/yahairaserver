@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
                 ]);
 
                 SkuStores::create([
-                    'sku_id' => $sku->id,
+                    'sku' => $sku->sku,
                     'store_id' => 1,
                     'amount' => fake()->numberBetween(10, 100),
                 ]);

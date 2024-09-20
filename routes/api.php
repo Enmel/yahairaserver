@@ -72,10 +72,18 @@ Route::prefix('products')->group(function () {
     Route::get('/', App\Http\Controllers\Products\ListController::class);
     Route::post('/', App\Http\Controllers\Products\StoreController::class);
     Route::get('/{product}', App\Http\Controllers\Products\GetByIdController::class);
-    #Route::put('/{product}', App\Http\Controllers\Products\UpdateController::class);
+    Route::put('/{product}', App\Http\Controllers\Products\UpdateController::class);
+    Route::delete('/{product}', App\Http\Controllers\Products\DeleteController::class);
 
-    #Route::get('/{product}/variant/{sku}', App\Http\Controllers\Variants\GetByIdController::class);
-    #Route::post('/{product}/variant', App\Http\Controllers\Variants\StoreController::class);
-    #Route::put('/{product}/variant/{sku}', App\Http\Controllers\Variants\UpdateController::class);
+    Route::get('/{product:upc}/variant', App\Http\Controllers\Variants\ListByUpcController::class);
+    Route::get('/{product:upc}/variant/{sku:sku}', App\Http\Controllers\Variants\GetByIdController::class);
+    Route::post('/{product:upc}/variant', App\Http\Controllers\Variants\StoreController::class);
+    Route::put('/{product:upc}/variant/{sku:sku}', App\Http\Controllers\Variants\UpdateController::class);
+})->middleware('auth:sanctum');
+
+Route::prefix('stocks')->group(function () {
+
+    Route::get('/', App\Http\Controllers\Stock\ListController::class);
+    Route::put('/', App\Http\Controllers\Stock\SetController::class);
 
 })->middleware('auth:sanctum');

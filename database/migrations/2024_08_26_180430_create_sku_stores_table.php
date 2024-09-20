@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sku_stores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('sku_id')->constrained();
+            $table->string('sku');
             $table->foreignId('store_id')->constrained();
             $table->integer('amount');
         });

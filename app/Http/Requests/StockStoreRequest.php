@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
 
-class StoreVariantRequest extends FormRequest
+class StockStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,6 @@ class StoreVariantRequest extends FormRequest
     {
         return true;
     }
-
 
     /**
      * Handle a failed validation attempt.
@@ -42,9 +41,9 @@ class StoreVariantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sku' => 'max:50', //ponerle opcional
-            'price' => 'required|decimal:2',
-            'variants.*.attribute_option_id' => 'required|exists:App\Models\AttributeOptionSku,id'
+            'sku' => 'max:50',
+            'amount' => 'required|integer',
+            'store_id' => 'required|exists:App\Models\Store,id'
         ];
     }
 }

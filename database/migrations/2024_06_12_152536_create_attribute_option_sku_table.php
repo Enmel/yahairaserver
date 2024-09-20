@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attribute_option_skus', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->foreignId('sku_id')->constrained();
             $table->foreignId('attribute_option_id')->constrained();
         });

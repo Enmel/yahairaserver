@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Abbasudo\Purity\Traits\Filterable;
 
 class SkuStores extends Model
 {
+    use Filterable;
+
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
@@ -14,7 +17,7 @@ class SkuStores extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'sku_id',
+        'sku',
         'store_id',
         'amount',
     ];

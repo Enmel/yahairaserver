@@ -19,16 +19,14 @@ class UpdateController extends Controller
         $validated = $request->validated();
 
         $sku->update([
-            'sku' => $validated['sku'],
             'price' => $validated['price'],
-            'amount' => $validated['amount'],
         ]);
 
         AttributeOptionSku::where('sku_id', $sku->id)->delete();
 
         $variants = [];
 
-        foreach ($validated as $variant) {
+        foreach ($validated['variants'] as $variant) {
             $variants[] = AttributeOptionSku::create([
                 'sku_id' => $sku->id,
                 'attribute_option_id' => $variant['attribute_option_id'],

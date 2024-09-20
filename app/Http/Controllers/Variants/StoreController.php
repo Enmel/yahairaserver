@@ -22,16 +22,19 @@ class StoreController extends Controller
         $sku = Sku::create([
             'sku' => $validated['sku'],
             'price' => $validated['price'],
-            'amount' => $validated['amount'],
+            'product_id' => $product->id,
         ]);
 
-        foreach ($validated as $variant) {
-            AttributeOptionSku::create([
+        foreach ($validated['variants'] as $variant) {
+            $variants[] = AttributeOptionSku::create([
                 'sku_id' => $sku->id,
                 'attribute_option_id' => $variant['attribute_option_id'],
             ]);
         }
 
-        return response()->json($product, Response::HTTP_OK);
+        $sku = $sku->toArray();
+        $sku['variants'] = $variants;
+
+        return response()->json($sku, Response::HTTP_OK);
     }
 }
