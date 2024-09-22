@@ -87,3 +87,20 @@ Route::prefix('stocks')->group(function () {
     Route::put('/', App\Http\Controllers\Stock\SetController::class);
 
 })->middleware('auth:sanctum');
+
+/*
+ *  Invoice
+ *      Cliente
+ *      Vendedor
+ *      Sucursal_venta
+ *      Payment Details
+ *
+ *  Invoice Item
+ *      store_id
+ *      Invoice_id
+ *      Sku_id,
+ *      amount,
+ *      price
+ *
+ *  Payment Details
+ * */

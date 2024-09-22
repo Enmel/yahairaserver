@@ -38,6 +38,6 @@ class Sku extends Model
     }
 
     public function availableInStores(): HasMany {
-        return $this->hasMany(SkuStores::class, 'sku_id');
+        return $this->hasMany(SkuStores::class, 'sku');
     }
 }
